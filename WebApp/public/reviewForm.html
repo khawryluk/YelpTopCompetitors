@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+  <head>
+    <title>Submit Review</title>
+    <script type="text/javascript">
+      //https://stackoverflow.com/questions/7962646/how-to-get-the-querystring-from-a-parent-page
+       function getQueryString() {
+                var queryStringKeyValue = window.parent.location.search.replace('?', '').split('&');
+                var qsJsonObject = {};
+                if (queryStringKeyValue != '') {
+                    for (i = 0; i < queryStringKeyValue.length; i++) {
+                        qsJsonObject[queryStringKeyValue[i].split('=')[0]] = queryStringKeyValue[i].split('=')[1];
+                    }
+                }
+                return qsJsonObject;
+            }
+            function getBusinessId(){
+  document.reviewForm.businessid.value = getQueryString().businessid;
+  return true;
+}
+
+    </script>
+  </head>
+  <body >
+    <p style="margin-bottom:5px"/>
+    <h4 style="margin:0px,text-align:left;display:inline-block;color:#5E5E5E;background:#FFFFFF">&nbsp;Submit Review&nbsp;</h4>
+    <form name="reviewForm" action="/review.html" style="background:#FFFFFF;width:60%;margin:0px"  method="get">
+  <input type="hidden" value="" name="businessid" readonly>
+	     <label> 
+  <span>User Name:</span> 
+      </label> <input type="text" name="username" value="User Name"/>
+	<span>Stars:</span>
+  <select name="stars">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  </select>
+      </label>
+      <label>
+	<span>&nbsp;</span><input type="submit" value="Submit" onsubmit="getBusinessId">
+      </label>
+    </form>
+    <iframe frameBorder="0" name="results_iframe" style="width:100%"/>
+  </body>
+</html>

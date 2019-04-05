@@ -1,0 +1,54 @@
+Yelp Top Competitors 
+
+Overview:
+I built this application as my final project for my class on Big Data at the University of Chicago. For this
+project, we were tasked with developed a Big Data application that had a batch, serving and speed layer driving
+a basic web app. For this application, I used the following technologies:
+	Java and Thrift For Data Ingestion
+	Hive For Data aggregation and manipulation
+	HBase as part of the speed layer
+	Scala, Spark, and Kafka for ingesting new data
+	Node.js For the website
+
+Details:
+For my final project, I worked with the Yelp public data set to create a web application that offers a list 
+of the top most reviewed companies, and then allows users to click on a company, see information about it
+and view it's three biggest competitors. I identified the competitors as companies that that their customers
+also reviewed positively (more than 3 stars). There are inherent flaws with this metric since it could
+in fact show companies that work together (i.e. a bar in a movie theater), but I thought overall it would work.
+Also, after building the tables, I noticed that one of my tables did not get stored sorted. When I tried to
+rebuild by sorting in a subquery, I received an issue. This causes the "Top Competitors" to not reflect
+the ranking one might expect and is a bug that would need to be addressed.
+
+On a company's page, you can also submit a review. This will send the company, a username (which isn't used), 
+and the stars to a kafka stream, KjhawrylukYelpBusinessesInfoAndCompetitors. I also created a scala program to 
+increment the review count and star sum when a person does this; however, when testing on my local environment 
+it appeared to corrupt the data, and it did not appear to be reading the Kafka Stream properly on the cluster,
+so this is another bug that would need to be addressed. 
+
+For this project, I created Thrift classes and a java application to ingest Yelp Reviews, Businesses and Users. 
+I did not end up using the users and some of the other data from these files (such as the review text), which
+you can also find in this repository. To run this file enter:
+yarn jar uber-YelpDataIngestion-0.0.1-SNAPSHOT.jar edu.uchicago.kjhawryluk.YelpDataIngestion.SerializeYelpData ~/2018mpcs53013-kjhawryluk /kjhawryluk-finalproject/users YelpUser
+Arguments:
+1. Directory Holding Files To Ingest
+2. Target Directory on HDFS
+3. YelpUser, YelpReview, or YelpBusiness depending on what type of data is being ingested. 
+
+Note:
+This site is no longer active; however it had the following capabilities:
+
+Path: /
+The homepage brought you to the homepage with the top 10. 
+
+Path: /?rank=5
+Brought you to the top 10 starting at that rank (up to 100). 
+
+Path: /?businessid=L95ppCbcWAt4LUWrCiEvPg
+Brought you to a given business. 
+
+To run speed layer:
+spark-submit --master yarn --deploy-mode client --class "edu.uchicago.kjhawryluk.YelpReviewReceiver.StreamYelpReviews" ~/kjhawryluk/uber-YelpReviewReceiver-0.0.1-SNAPSHOT.jar 10.0.0.2:6667
+
+
+

@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+  <head>
+    <title>Popular Companies</title>
+    <link type="text/css" rel="stylesheet" href="table.css" />
+  </head>
+  <body>
+    <H1>Popular Companies</H1>
+
+<table class="BusinessInfo" style="width:60%;margin:auto;">
+  <tr><td><h3>Company</h3></td><td><h3>City</h3></td><td><h3>State</h3></td><td><h3>Stars</h3></td><td><h3>Reviews</h3></td></tr>
+{{#businessListings}}
+ <tr><td><a href="/?businessid={{businessid}}">{{name}}</a></td><td>{{city}}</td><td>{{state}}</td><td>{{stars}}</td><td>{{reviewcount}}</td></tr>
+{{/businessListings}}
+
+</table>
+</body></html>

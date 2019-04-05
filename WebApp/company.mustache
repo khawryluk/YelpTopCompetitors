@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+  <head>
+    <title>Top Most Positively Reviewed Companies</title>
+    <link type="text/css" rel="stylesheet" href="table.css" />
+  </head>
+  <body>
+ 
+      <H1>{{name}}</H1>
+
+<table class="BusinessInfo" style="width:60%;margin:auto;">
+  <tr><td>Stars</td><td>{{stars}}</td></tr>
+  <tr><td>Number of Reviews</td><td>{{reviewcount}}</td></tr>
+	<tr><td>Neighborhood</td><td>{{neighborhood}}</td></tr>
+  <tr><td>Address</td><td>{{address}}</td></tr>
+  <tr><td>City</td><td>{{city}}</td></tr>
+  <tr><td>State</td><td>{{state}}</td></tr>
+  <tr><td>Zip Code</td><td>{{postalcode}}</td></tr>
+  <tr><td>City</td><td>{{city}}</td></tr>
+</table>
+<H2>Categories</H2>
+<p>{{catagories}}</p>
+
+{{#competitor1name}}
+<H2>Top Competitiors</H2>
+{{/competitor1name}}
+
+<table style="width:60%;margin:auto;">
+   <tr>
+    <td>
+      {{#competitor1name}}
+   <div class='competitor'>
+    <a href="/?businessid={{competitor1id}}"><H3>{{competitor1name}}</H3></a>
+      <p>Shared Customers' Reviews: {{competitor1ReviewCount}}
+      <br><p>Shared Customers' Positive Reviews: {{competitor1PositiveReviewCount}}</a>
+    </div>
+   {{/competitor1name}}
+  </td>
+  <td>
+    {{#competitor2name}}
+     <div class='competitor'> 
+    <a href="/?businessid={{competitor2id}}"><H3>{{competitor2name}}</H3></a>
+      <p>Shared Customers' Reviews: {{competitor2ReviewCount}}
+      <br><p>Shared Customers' Positive Reviews: {{competitor2PositiveReviewCount}}</a>
+    </div>
+    {{/competitor2name}}
+  </td>
+  <td>
+    {{#competitor3name}}
+     <div class='competitor'>     
+      <a href="/?businessid={{competitor3id}}"><H3>{{competitor3name}}</H3></a>
+      <p>Shared Customers' Reviews: {{competitor3ReviewCount}}
+      <br><p>Shared Customers' Positive Reviews: {{competitor3PositiveReviewCount}}</a>
+
+    </div>
+    {{/competitor3name}}
+  </td>
+  <tr>
+</table>
+
+<iframe class="iframe" src="/reviewForm.html"></iframe>
+<style> 
+.iframe {margin:0px,
+  display: block; width: 100%; height: 100%; border: none;}
+.competitor{padding:5px;}
+</style>
+</body></html>
+

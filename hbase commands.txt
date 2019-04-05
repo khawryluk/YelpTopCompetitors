@@ -1,0 +1,7 @@
+disable 'KjhawrylukYelpBusinessesInfoAndCompetitors'
+drop 'KjhawrylukYelpBusinessesInfoAndCompetitors'
+create 'KjhawrylukYelpBusinessesInfoAndCompetitors', 'yelpBusiness'
+
+disable 'KjhawrylukAllBusinesses'
+drop 'KjhawrylukAllBusinesses'
+create 'KjhawrylukAllBusinesses', 'yelpBusiness'
